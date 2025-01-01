@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+.cm-select {text-decoration: underline dashed var(--text-accent);}
+.cm-query {text-decoration: underline dashed red;}
+.eng {display: none;}
+.DBC {text-decoration: underline dashed hsla(90, 100%, 50%, 0.6);}
+
+.cm-line:has(.SP4) {counter-reset: sp-counter;}
+.SP1 {
+  counter-increment: sp-counter;
+  -webkit-mask: no-repeat center url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" /></svg>');
+  -webkit-mask-size: contain;
+  background-color: hsla(90, 100%, 50%, 0.6);
+}
+.SP2:not(.SP4 > .SP2:nth-of-type(1)) {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><rect x="1.6" y="-1" width="40%" height="110%" fill="none" stroke="hsla(0, 0%, 60%, 1)" /></svg>');
+}
+.SP4:has(.SP1) {
+  position: relative;
+  &::after {
+    content: counter(sp-counter);
+    position: absolute;
+    right: 2px; font-size: 10px;
+    color: var(--text-normal);
+  }
+}
+
+/* #region Obsolete */
+
+/* 'small-kana': '[っッゃャゅュょョゎヮぁァぃィぅゥぇェぉォ]', */
+.small-kana {font-size: .9em;}
+
+/* 'num-circle': '[①②③④⑤⑥⑦⑧⑨]', */
+.num-circle:not(.print .num-circle) {
+  vertical-align: .15em;
+  font-size: .7em;
+  .markdown-preview-view table & {
+    vertical-align: .06em;
+    font-size: .84em;
+  }
+}
+
+/* #endregion */
